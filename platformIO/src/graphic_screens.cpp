@@ -43,6 +43,7 @@
 #include <Arduino.h>
 #include "graphic_screens.h"
 #include "globalVariable.h"
+#include "pinout.h"
 #include "colorDefine.h"
 #include "sideralMath.h"
 
@@ -861,7 +862,7 @@ void OnScreenMsg(int Msg){
 
 void considerDayNightMode(){
   boolean prev_night_mode = IS_NIGHTMODE;
-          if (analogRead(A6) < 800){
+          if (analogRead(nightModePin) < 800){
               IS_NIGHTMODE = true;
           } else {
               IS_NIGHTMODE = false;
@@ -1127,4 +1128,10 @@ void drawPic(File *StarMaps, uint16_t x, uint16_t y, uint16_t WW, uint16_t HH){
       }
     }
   }
+}
+
+uint16_t readID(void) {
+    uint16_t ID = tft.readID();
+    if (ID == 0xD3D3) ID = 0x9486;
+    return ID;
 }

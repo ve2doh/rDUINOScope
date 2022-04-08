@@ -25,10 +25,12 @@ int DEC_MODE2 = 8;
 // 16 (TX) - goes to RX on GPS;
 // 15 (RX) - goes to Bluetooth RX;
 // 14 (TX) - goes to Bluetooth TX;
-int yPin = A0;
-int xPin = A1;
-int DEV1 = A2;
-int DEV2 = A3;
+int yPin = A7;
+int xPin = A9;
+int DEV1 = A10;
+int DEV2 = 52;
+int nightModePin =A6;
 int TFTBright = DAC0;
 int Joy_SW = A11;
 int POWER_DRV8825 = A8;
+int sd_cs = 53;               // TFTShield sd card chip select pin is Arduino digital pin 42

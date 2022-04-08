@@ -116,10 +116,10 @@ void setup() {
   rtc.begin();
   dht.begin();
 
-  tft.begin();
+  tft.begin(readID());
   tft.fillScreen(BLACK);
 
-  // DRB8825 - drive mode pins (determine Steppping Modes 1/8, 1/16 and etc.
+// DRB8825 - drive mode pins (determine Steppping Modes 1/8, 1/16 and etc.
   pinMode(RA_MODE0, OUTPUT); 
   pinMode(RA_MODE1, OUTPUT); 
   pinMode(RA_MODE2, OUTPUT);
@@ -156,7 +156,7 @@ void setup() {
   Timer3.attachInterrupt(Sidereal_rate);
 //  Timer3.start(Clock_Sidereal); // executes the code every 62.329 ms.
 
-  if (analogRead(A6) < 800){
+  if (analogRead(nightModePin) < 800){
     IS_NIGHTMODE = true;
     texts = Maroon;
     l_text = RED;

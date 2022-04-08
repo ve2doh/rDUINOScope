@@ -35,5 +35,7 @@ extern int DEV2;
 extern int TFTBright;
 extern int Joy_SW;
 extern int POWER_DRV8825;
+extern int nightModePin;
+extern int sd_cs;               // TFTShield sd card chip select pin is Arduino digital pin 42
 
 #endif

@@ -24,5 +24,6 @@ void OnScreenMsg(int Msg);
 void considerDayNightMode();
 void drawMainScreen_Menu(int fill);
 void TimerUpdateDraw(int z);
+uint16_t readID(void);
 
 #endif

@@ -289,7 +289,6 @@ int map_c = 0;    // Ued to determine the StarMap Column .... image name
 
 TinyGPSPlus gps;
 DS3231 rtc(A4, A5);           // (SDA, SCL) from the RTC board
-int sd_cs = 42;               // TFTShield sd card chip select pin is Arduino digital pin 42
 
 String old_t, old_d;
 String Start_date;
