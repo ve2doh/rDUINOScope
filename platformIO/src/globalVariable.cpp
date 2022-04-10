@@ -1,10 +1,15 @@
 #include "globalVariable.h"
+#include "pinout.h"
 
 int dateEntryPos = 0;
 MCUFRIEND_kbv tft;
 int16_t texts, l_text, d_text, btn_l_border, btn_d_border, btn_l_text, btn_d_text, btn_l_selection, title_bg, title_texts, messie_btn, file_btn, ngc_btn, MsgBox_bg, MsgBox_t;    // defines string constants for the clor - Depending on the DAY/NIGHT modes
-int XP = 7, YP = A2, XM = A1, YM = 6; 
+
+const int TS_LEFT=885,TS_RT=178,TS_TOP=904,TS_BOT=99;
+int XP = 6, YP = A1, XM = A2, YM = 7; 
+
 TouchScreen  myTouch(XP, YP, XM, YM, 300);
+
 DHT dht(DHTPIN, DHTTYPE);
 
 String Messier_Array[120];
@@ -288,7 +293,7 @@ int map_r = 0;    // Used to determine the StarMap Row ... image name (1-1.bmp; 
 int map_c = 0;    // Ued to determine the StarMap Column .... image name
 
 TinyGPSPlus gps;
-DS3231 rtc(A4, A5);           // (SDA, SCL) from the RTC board
+DS3231 rtc(rtcSDA, rtcSCL);           // (SDA, SCL) from the RTC board
 
 String old_t, old_d;
 String Start_date;
@@ -342,3 +347,74 @@ int Tracking_type = 1;  // 1: Sidereal, 2: Solar, 0: Lunar;
 int Clock_Sidereal;  // Variable for the Interruptions. nterruption is initialized depending on the DATA above -in miliseconds
 int Clock_Solar;  // Variable for the Interruptions. nterruption is initialized depending on the DATA above -in miliseconds
 int Clock_Lunar;  // Variable for the Interruptions. nterruption is initialized depending on the DATA above -in miliseconds
+int pixel_x, pixel_y;
+
+
+void printDebugValuesAndWait(int timeDelay){
+    Serial.println("-------------------------------------------");
+
+    Serial.print("millis(): ");
+    Serial.println(millis());
+
+
+    Serial.print("RA_move_ending: ");
+    Serial.println(RA_move_ending);
+
+    Serial.print("IS_MERIDIAN_FLIP_AUTOMATIC: ");
+    Serial.println(IS_MERIDIAN_FLIP_AUTOMATIC);
+
+    Serial.print("UPD_LST: ");
+    Serial.println(UPD_LST);
+
+    Serial.print("IS_OBJ_FOUND: ");
+    Serial.println(IS_OBJ_FOUND);
+
+    Serial.print("DELAY_Slew: ");
+    Serial.println(DELAY_Slew);
+
+    Serial.print("IS_STEPPERS_ON: ");
+    Serial.println(IS_STEPPERS_ON);
+
+    Serial.print("IS_BT_MODE_ON: ");
+    Serial.println(IS_BT_MODE_ON);
+
+    Serial.print("IS_MANUAL_MOVE: ");
+    Serial.println(IS_MANUAL_MOVE);
+
+    Serial.print("JOYSTICK Movements(xPosition) : ");
+    Serial.println(xPosition);
+
+    Serial.print("JOYSTICK Movements(yPosition): ");
+    Serial.println(yPosition);
+
+    Serial.print("TFT_timeout: ");
+    Serial.println(TFT_timeout);
+
+    Serial.print("TFT_Timer: ");
+    Serial.println(TFT_Timer);
+
+    Serial.print("IS_TFT_ON: ");
+    Serial.println(IS_TFT_ON);
+
+    Serial.print("IS_IN_OPERATION: ");
+    Serial.println(IS_IN_OPERATION);
+
+    Serial.print("IS_NIGHTMODE: ");
+    Serial.println(IS_NIGHTMODE);
+
+    Serial.print("UPD_T: ");
+    Serial.println(UPD_T);
+
+    Serial.print("CURRENT_SCREEN: ");
+    Serial.println(CURRENT_SCREEN);
+
+    Serial.print("update_time: ");
+    Serial.println(update_time);
+
+    delay(timeDelay);
+/*
+    Serial.print(": ");
+    Serial.println();
+
+*/
+}

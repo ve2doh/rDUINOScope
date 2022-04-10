@@ -28,6 +28,9 @@ extern MCUFRIEND_kbv tft;
 extern int16_t texts, l_text, d_text, btn_l_border, btn_d_border, btn_l_text, btn_d_text, btn_l_selection, title_bg, title_texts, messie_btn, file_btn, ngc_btn, MsgBox_bg, MsgBox_t;    // defines string constants for the clor - Depending on the DAY/NIGHT modes
 
 extern int XP, YP, XM, YM; 
+extern const int TS_LEFT,TS_RT,TS_TOP,TS_BOT;
+extern int pixel_x, pixel_y;
+
 extern TouchScreen  myTouch;
 
 //
@@ -171,5 +174,6 @@ extern int Clock_Sidereal;  // Variable for the Interruptions. nterruption is in
 extern int Clock_Solar;  // Variable for the Interruptions. nterruption is initialized depending on the DATA above -in miliseconds
 extern int Clock_Lunar;  // Variable for the Interruptions. nterruption is initialized depending on the DATA above -in miliseconds
 
+void printDebugValuesAndWait(int timeDelay);
 
 #endif

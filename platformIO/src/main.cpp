@@ -119,6 +119,11 @@ void setup() {
   tft.begin(readID());
   tft.fillScreen(BLACK);
 
+  pinMode(YP, OUTPUT);      //restore shared pins
+  pinMode(XM, OUTPUT);
+  digitalWrite(YP, HIGH);   //because TFT control pins
+  digitalWrite(XM, HIGH);
+
 // DRB8825 - drive mode pins (determine Steppping Modes 1/8, 1/16 and etc.
   pinMode(RA_MODE0, OUTPUT); 
   pinMode(RA_MODE1, OUTPUT); 
@@ -395,7 +400,6 @@ void loop() {
   //
   if (IS_OBJ_FOUND == true){    
 
-
       // BLUETOOTH Considerations ? ... if any
       if ((IS_BT_MODE_ON == true)&&(Serial3.available()>0)&&(IS_MANUAL_MOVE == false)){
            BT_COMMAND_STR = Serial3.readStringUntil('#');
@@ -431,22 +435,19 @@ void loop() {
          IS_TFT_ON = false;
       }
 
-      int tx = 0;
-      int ty = 0;
-    
       if (touchDetection() == true){  
-          tx = myTouch.getPoint().x;
-          ty = myTouch.getPoint().y;
+          considerTouchInput(pixel_x, pixel_y);
        }
-      considerTouchInput(tx, ty);
 
       // OTHER UPDATES ?  ... if any
       // Happens every 2 seconds
       if (((millis()- UPD_T) > 2000)&&(IS_MANUAL_MOVE == false)){
+
         calculateLST_HA();  // Make sure it Updates the LST! used on Main Screen and When Calculating current Coords. 
         considerTimeUpdates();
         considerDayNightMode();
         considerTempUpdates();
+
         // I need to make sure the Drives are not moved to track the stars,
         // if Object is below horizon ALT < 0 - Stop tracking.
         if ((ALT <= 0) && (IS_TRACKING==true) && (IS_IN_OPERATION == true)){

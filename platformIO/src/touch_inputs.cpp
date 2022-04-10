@@ -397,7 +397,7 @@ void considerTouchInput(int lx, int ly){
             }
          }
        }
-     }else if (CURRENT_SCREEN == 7){   // captures touches on drawOptionsScreen()
+    }else if (CURRENT_SCREEN == 7){   // captures touches on drawOptionsScreen()
        if (lx > 181 && lx < 238 && ly > 5 && ly < 35){
        // BTN <Back pressed
          drawMainScreen();
@@ -967,8 +967,26 @@ void considerTouchInput(int lx, int ly){
 
 bool touchDetection() {
   TSPoint tp = myTouch.getPoint();
+  pinMode(YP, OUTPUT);      //restore shared pins
+  pinMode(XM, OUTPUT);
+  digitalWrite(YP, HIGH);   //because TFT control pins
+  digitalWrite(XM, HIGH);
+
   if (tp.z > MINPRESSURE && tp.z < MAXPRESSURE) {
+    pixel_x = map(tp.x, TS_LEFT, TS_RT, 0, tft.width()); //.kbv makes sense to me
+    pixel_y = map(tp.y, TS_TOP, TS_BOT, 0, tft.height());
+
+    Serial.print("touch detect on screen: ");
+    Serial.println(CURRENT_SCREEN);
+    Serial.println("position:");
+    Serial.print("       X:");
+    Serial.println(pixel_x);
+    Serial.print("       Y:");
+    Serial.println(pixel_y);
+    Serial.print("       z:");
+    Serial.println(tp.z);
+
     return true;
-  }
+  }  
   return false;
 }

@@ -53,18 +53,21 @@ void considerTempUpdates(){                                 // Temperature && Hu
 }
 
 void considerTimeUpdates(){   // UPDATEs time on Screen1 && Screen4 -  Clock Screen and Main Screen
+
    int changes=0;
    for (int y=0; y<12; y++){
        if (w_DateTime[y]!=0){
            changes=1;
        }
    }
+
   int mer_flp_sound = HAHour + ((HAMin + MIN_TO_MERIDIAN_FLIP + MIN_SOUND_BEFORE_FLIP)/60);
   if((millis()- update_time) > 10000 && mer_flp_sound >= 24){
     if (IS_SOUND_ON){
       SoundOn(3830,8);
     }
   }
+
   if (CURRENT_SCREEN == 4 && (millis()-update_time) > 10000){
       tft.setTextSize(3);
       tft.setTextColor(title_texts);

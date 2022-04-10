@@ -90,7 +90,6 @@ void drawGPSScreen(){
   tft.print("for Sofia, Bulgaria");
 }
 
-
 void drawClockScreen(){
   CURRENT_SCREEN = 1;
   tft.fillScreen(BLACK);
@@ -131,7 +130,6 @@ void drawClockScreen(){
   }
 }
 
-
 void drawSelectAlignment(){
   CURRENT_SCREEN = 3;
   tft.fillScreen(BLACK);;
@@ -151,7 +149,6 @@ void drawSelectAlignment(){
   }
   DrawButton(20,320,200,45, "Skip Alignment", 0, btn_l_border, btn_l_text, 2);
 }
-
 
 void drawMainScreen(){
   tft.fillScreen(BLACK);
@@ -279,7 +276,6 @@ if (OBJECT_NAME != ""){
     drawMainScreen_Menu(0);
 }
 
-
 void drawCoordinatesScreen(){
   CURRENT_SCREEN = 5;
   tft.fillScreen(BLACK);;
@@ -312,7 +308,6 @@ void drawCoordinatesScreen(){
   tft.setTextSize(1);
   tft.print("Coordinates represented here are based on the current motor positions and re-calculated back to Hour Angle, Right Ascension and Declination. NB: Note that alignment affects the scales and small variations are possible!");
 }
-
 
 void drawLoadScreen(){
   CURRENT_SCREEN = 6;
@@ -793,7 +788,6 @@ void drawConstelationScreen(int indx){
   }
 }
 
-
 void OnScreenMsg(int Msg){
 // Msg = 1 -> Moving;
 // Msg = 2 -> Tracking Off;
@@ -922,7 +916,6 @@ void considerDayNightMode(){
            }
      }
  }
-
 
 void drawMainScreen_Menu(int fill){
 //  if (fill == 1){
@@ -1059,7 +1052,6 @@ void DrawButton(int X, int Y, int Width, int Height, String Caption, int16_t Bod
       tft.println(Caption);
    }
 }
-
 
 void drawPic(File *StarMaps, uint16_t x, uint16_t y, uint16_t WW, uint16_t HH){
   uint8_t header[14 + 124]; // maximum length of bmp file header
