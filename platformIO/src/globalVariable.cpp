@@ -5,9 +5,11 @@ int dateEntryPos = 0;
 MCUFRIEND_kbv tft;
 int16_t texts, l_text, d_text, btn_l_border, btn_d_border, btn_l_text, btn_d_text, btn_l_selection, title_bg, title_texts, messie_btn, file_btn, ngc_btn, MsgBox_bg, MsgBox_t;    // defines string constants for the clor - Depending on the DAY/NIGHT modes
 
-const int TS_LEFT=885,TS_RT=178,TS_TOP=904,TS_BOT=99;
-int XP = 6, YP = A1, XM = A2, YM = 7; 
+const int TS_LEFT=160,TS_RT=834; //for X axis
+const int TS_TOP=132,TS_BOT=921;//for y axis
 
+int YP = A1, YM = 7;
+int XP = 6, XM = A2; 
 TouchScreen  myTouch(XP, YP, XM, YM, 300);
 
 DHT dht(DHTPIN, DHTTYPE);

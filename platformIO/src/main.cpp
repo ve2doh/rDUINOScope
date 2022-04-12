@@ -436,8 +436,10 @@ void loop() {
       }
 
       if (touchDetection() == true){  
-          considerTouchInput(pixel_x, pixel_y);
-       }
+        considerTouchInput(pixel_x, pixel_y);
+      } else {
+        considerTouchInput(0, 0);
+      }
 
       // OTHER UPDATES ?  ... if any
       // Happens every 2 seconds

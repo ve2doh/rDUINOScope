@@ -69,6 +69,15 @@ void considerTouchInput(int lx, int ly){
       return;
     }
     TFT_Timer = millis();
+
+    Serial.print("BUTTON DOWN detect on screen: ");
+    Serial.println(CURRENT_SCREEN);
+    Serial.println("position:");
+    Serial.print("       X:");
+    Serial.println(pixel_x);
+    Serial.print("       Y:");
+    Serial.println(pixel_y);
+
     if (CURRENT_SCREEN == 0){   // captures touches on drawGPSScreen()
       if (lx > 46 && lx < 192 && ly > 317 && ly < 371){
         last_button = 1;
@@ -761,7 +770,9 @@ void considerTouchInput(int lx, int ly){
   //
   //      - only executed when the user touches the screen - RELEASE
   //**************************************************************
-    
+    Serial.print("BUTTON UP detect on screen: ");
+    Serial.println(CURRENT_SCREEN);
+
     if (CURRENT_SCREEN == 0){ 
       if (last_button == 1){
           last_button = 0;
@@ -973,19 +984,31 @@ bool touchDetection() {
   digitalWrite(XM, HIGH);
 
   if (tp.z > MINPRESSURE && tp.z < MAXPRESSURE) {
-    pixel_x = map(tp.x, TS_LEFT, TS_RT, 0, tft.width()); //.kbv makes sense to me
-    pixel_y = map(tp.y, TS_TOP, TS_BOT, 0, tft.height());
-
+    pixel_x = map(tp.x, TS_LEFT, TS_RT, tft.width(), 0); //.kbv makes sense to me
+    pixel_y = map(tp.y, TS_TOP, TS_BOT, tft.height(), 0);
+/*
     Serial.print("touch detect on screen: ");
     Serial.println(CURRENT_SCREEN);
     Serial.println("position:");
-    Serial.print("       X:");
+    Serial.print("       pixel_x:");
     Serial.println(pixel_x);
-    Serial.print("       Y:");
+    Serial.print("       pixel_y:");
     Serial.println(pixel_y);
+
+
+    Serial.print("       x:");
+    Serial.println(tp.x);
+    Serial.print("       y:");
+    Serial.println(tp.y);
     Serial.print("       z:");
     Serial.println(tp.z);
 
+    Serial.print("       width:");
+    Serial.println(tft.width());
+
+    Serial.print("       height:");
+    Serial.println(tft.height());
+*/
     return true;
   }  
   return false;
